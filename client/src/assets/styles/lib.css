@@ -1,0 +1,26 @@
+/* Import Swiper styles */
+@import url('swiper/css');
+@import url('swiper/css/navigation');
+@import url('swiper/css/pagination');
+@import url('swiper/css/scrollbar');
+@import url('swiper/css/grid');
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: white;
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.swiper-button-prev::after {
+  content: 'prev';
+  font-size: medium;
+  font-weight: bold;
+}
+.swiper-button-next::after {
+  content: 'next';
+  font-size: medium;
+  font-weight: bold;
+}
