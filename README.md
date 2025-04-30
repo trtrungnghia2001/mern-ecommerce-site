@@ -24,7 +24,7 @@ This e-commerce site allows users to browse and purchase products online. The ap
 
 * Frontend: React, Zustand, Tailwind CSS, Shadcn UI
 * Backend: Node.js, Express, MongoDB
-* Authentication: Passport.js, Authentication
+* Authentication: Passport.js, JWT
 
 ## Demo
 
