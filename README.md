@@ -1,3 +1,5 @@
+# MERN E-Commerce Site
+
 A full-stack e-commerce application built with the MERN stack.
 
 ## Table of Contents
