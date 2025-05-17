@@ -9,7 +9,6 @@
   "routes": [
     {
       "src": "/(.*)",
-      "desc": "index.js",
       "headers": {
         "Access-Control-Allow-Origin": "https://mern-ecommerce-site-client-9524.onrender.com",
         "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
