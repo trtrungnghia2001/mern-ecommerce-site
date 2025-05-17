@@ -18,10 +18,12 @@ import { useEffect } from 'react'
 import ButtonAddToCart from '@/features/cart/components/ButtonAddToCart'
 import ButtonByNow from '@/features/payment/components/ButtonByNow'
 import RatingComponent from '@/components/RatingComponent'
+import { useAuthStore } from '@/features/authentication/stores/auth.store'
 
 const ProductIdPage = () => {
   const { id } = useParams()
   const { addHistory } = useProductStore()
+  const { user } = useAuthStore()
 
   const productGetByIdResult = useQuery({
     queryKey: ['product', 'get', id],
@@ -43,10 +45,10 @@ const ProductIdPage = () => {
   })
 
   useEffect(() => {
-    if (id) {
+    if (id && user) {
       addHistory(id)
     }
-  }, [id])
+  }, [id, user])
 
   return (
     <>
