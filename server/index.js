@@ -18,6 +18,8 @@ await connectRedis()
 
 const app = express()
 const isProduction = ENV_CONFIG.NODE_ENV === 'production'
+console.log(ENV_CONFIG.URL_WEBSITE)
+
 // cors
 app.use(
   cors({
