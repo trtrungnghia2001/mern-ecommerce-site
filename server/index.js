@@ -22,7 +22,11 @@ const isProduction = ENV_CONFIG.NODE_ENV === 'production'
 // cors
 app.use(
   cors({
-    origin: [`http://localhost:5173`, ENV_CONFIG.URL_WEBSITE],
+    origin: [
+      `http://localhost:5173`,
+      `http://localhost:5174`,
+      ENV_CONFIG.URL_WEBSITE,
+    ],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

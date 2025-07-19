@@ -12,7 +12,9 @@ const App = () => {
 
   useEffect(() => {
     ;(async () => {
-      await signinWithPasspostSuccess()
+      if (!user) {
+        await signinWithPasspostSuccess()
+      }
     })()
   }, [])
 

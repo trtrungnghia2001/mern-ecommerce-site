@@ -3,7 +3,7 @@ import { CartType } from '@/features/cart/types/cart.type'
 import useSearchParamsValue from '@/hooks/useSearchParamsValue'
 import { displayCurrency } from '@/utils/currency.util'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import QuantityInput from '@/components/QuantityInput'
 
 import toast from 'react-hot-toast'
@@ -36,19 +36,23 @@ const CartPage = () => {
     },
   })
 
-  // select delete
+  //
   const [selectRow, setSelectRow] = useState<CartType[]>([])
+  const [selectRowData, setSelectRowData] = useState<CartType[]>([])
 
   const priceData = useMemo(() => {
-    const total_discount = selectRow.reduce((previousValue, currentValue) => {
-      return (
-        previousValue + currentValue.quantity * currentValue.product.discount
-      )
-    }, 0)
-    const total_price = selectRow.reduce((previousValue, currentValue) => {
+    const total_discount = selectRowData.reduce(
+      (previousValue, currentValue) => {
+        return (
+          previousValue + currentValue.quantity * currentValue.product.discount
+        )
+      },
+      0,
+    )
+    const total_price = selectRowData.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.quantity * currentValue.product.price
     }, 0)
-    const total_origin_price = selectRow.reduce(
+    const total_origin_price = selectRowData.reduce(
       (previousValue, currentValue) => {
         return (
           previousValue +
@@ -57,28 +61,31 @@ const CartPage = () => {
       },
       0,
     )
-    const total_quantity = selectRow.reduce((previousValue, currentValue) => {
-      return previousValue + currentValue.quantity
-    }, 0)
+    const total_quantity = selectRowData.reduce(
+      (previousValue, currentValue) => {
+        return previousValue + currentValue.quantity
+      },
+      0,
+    )
     return {
       total_discount,
       total_price,
       total_origin_price,
       total_quantity,
     }
-  }, [selectRow])
+  }, [selectRowData])
 
   const { addPayment } = usePaymentStore()
 
   const navigate = useNavigate()
   const handlePayment = useCallback(() => {
-    const payments = selectRow.map((item) => ({
+    const payments = selectRowData.map((item) => ({
       quantity: item.quantity,
       product: item.product,
     }))
     addPayment(payments)
     navigate(`/payment`)
-  }, [selectRow])
+  }, [selectRowData])
 
   const columns: ColumnDef<CartType>[] = [
     {
@@ -177,15 +184,12 @@ const CartPage = () => {
     },
   ]
 
-  const handleSelect = useCallback(
-    (value: CartType[]) => {
-      const datas = carts.filter((item) =>
-        value.find((subItem) => subItem._id === item._id),
-      )
-      setSelectRow(datas)
-    },
-    [carts],
-  )
+  useEffect(() => {
+    const datas = carts.filter((item) =>
+      selectRow.find((subItem) => subItem._id === item._id),
+    )
+    setSelectRowData(datas)
+  }, [carts, selectRow])
 
   return (
     <>
@@ -193,12 +197,12 @@ const CartPage = () => {
       <div className="flex flex-col md:flex-row items-start gap-6">
         {/* list */}
         <div className="w-full overflow-y-auto">
-          <div className="bg-boxColor mb-4">
+          <div className="mb-4">
             <DataTable
               columns={columns}
               data={carts.map((item) => ({ id: item._id, ...item }))}
               onSelectValue={(value) => {
-                handleSelect(value)
+                setSelectRow(value)
               }}
             />
           </div>

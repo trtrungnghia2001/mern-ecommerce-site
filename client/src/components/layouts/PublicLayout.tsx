@@ -10,8 +10,8 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <HeaderComponent />
       <NavBottomComponent />
-      <div className="min-h-[90vh]">
-        <WrapperComponent className="py-4">{children}</WrapperComponent>
+      <div className="min-h-[90vh] p-4">
+        <WrapperComponent>{children}</WrapperComponent>
       </div>
       <FooterComponent />
       <ButtonToTop />

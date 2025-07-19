@@ -8,10 +8,18 @@ import { IoCartOutline } from 'react-icons/io5'
 import { MdEmojiEmotions, MdHome } from 'react-icons/md'
 import clsx from 'clsx'
 import { useCartStore } from '@/features/cart/stores/cart.store'
+import { useQuery } from '@tanstack/react-query'
 
 const HeaderComponent = () => {
-  const { total_quantity } = useCartStore()
+  const { total_quantity, getCart } = useCartStore()
   const { user } = useAuthStore()
+  const getResult = useQuery({
+    queryKey: ['me', 'cart'],
+    queryFn: async () => {
+      return getCart()
+    },
+    enabled: !!user,
+  })
 
   return (
     <header className="z-50 sticky top-0 left-0 right-0 bg-boxColor py-4 px-4 shadow">

@@ -151,6 +151,7 @@ const AddressCreateUpdateForm = () => {
     },
     onSuccess: (data) => {
       toast.success(data.message)
+      form.reset()
     },
     onError: (error) => {
       toast.error(error.message)

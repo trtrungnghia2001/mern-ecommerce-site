@@ -59,7 +59,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <Table>
-      <TableHeader>
+      <TableHeader className="bg-boxColor">
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
@@ -77,7 +77,7 @@ export function DataTable<TData, TValue>({
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody>
+      <TableBody className="bg-boxColor">
         {table.getRowModel().rows.map((row) => (
           <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
             {row.getVisibleCells().map((cell) => (

@@ -15,12 +15,20 @@ app.post(`/create`, authProtectedRouter, async (req, res, next) => {
     const body = req.body
     const user = req.user
 
-    if (body.isDefault) {
+    const existingAddress = await addressModel.countDocuments({
+      user: user._id,
+    })
+
+    if (body.isDefault || existingAddress === 0) {
       await addressModel.updateMany(
         { user: user._id },
         { $set: { isDefault: false } },
       )
+      body.isDefault = true
+    } else {
+      body.isDefault = false
     }
+
     const newAddress = await addressModel.create({
       ...body,
       user: user._id,

@@ -14,7 +14,7 @@ const ShippingCard = ({ data }: { data: AddressType }) => {
           <div className="flex items-center gap-2">
             <h6>{data.fullName}</h6>
             {data.isDefault && (
-              <span className="text-green-500">Default Address</span>
+              <span className="text-green-500 text-xs">Default Address</span>
             )}
           </div>
           <p>

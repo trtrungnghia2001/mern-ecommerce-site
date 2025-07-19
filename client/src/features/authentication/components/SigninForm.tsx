@@ -28,15 +28,26 @@ const formSchema = z.object({
   }),
 })
 
-const SigninForm = () => {
+interface SigninFormProps {
+  isAdmin?: boolean
+}
+
+const SigninForm = ({ isAdmin }: SigninFormProps) => {
   const { signin } = useAuthStore()
   const signupResult = useMutation({
     mutationFn: async (values: SigninType) => {
       return await signin(values)
     },
     onSuccess: (data) => {
-      toast.success(data.message)
-      navigate(`/`)
+      if (isAdmin && data.data.user.role === 'admin') {
+        toast.success('Welcome Admin!')
+        navigate('/admin/dashboard')
+      } else if (isAdmin && data.data.user.role !== 'admin') {
+        toast.error('You are not authorized to access this page.')
+      } else {
+        toast.success(data.message)
+        navigate(`/`)
+      }
     },
     onError: (error) => {
       toast.error(error.message)

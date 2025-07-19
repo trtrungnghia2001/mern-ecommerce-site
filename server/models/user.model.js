@@ -13,7 +13,6 @@ const schema = new Schema(
     },
     avatar: {
       type: String,
-      default: 'https://avatar.iran.liara.run/public',
     },
     name: {
       type: String,

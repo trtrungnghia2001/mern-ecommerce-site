@@ -83,4 +83,15 @@ export const useProductStore = create<ProductStoreType>()((set, get) => ({
     set({ product_histories: response.data.results })
     return response
   },
+
+  //
+  products: [],
+  getProducts: async (query = '') => {
+    const url = baseUrl + 'get?' + query
+    const response = (
+      await axiosInstance.get<ResponseSuccessListType<ProductType>>(url)
+    ).data
+    set({ products: response.data.results })
+    return response
+  },
 }))

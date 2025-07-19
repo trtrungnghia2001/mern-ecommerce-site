@@ -42,4 +42,7 @@ export type ProductStoreType = {
     productId: string,
   ) => Promise<ResponseSuccessType<ProductType>>
   getHistory: (query?: string) => Promise<ResponseSuccessListType<ProductType>>
+  // product
+  products: ProductType[]
+  getProducts: (query?: string) => Promise<ResponseSuccessListType<ProductType>>
 }
