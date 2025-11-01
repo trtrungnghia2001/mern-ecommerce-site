@@ -35,3 +35,5 @@ This e-commerce site allows users to browse and purchase products online. The ap
 ## Images
 
 ![mern-ecommerce-site](https://github.com/user-attachments/assets/f9f3d6f7-beea-49ec-9d7f-919be1508983)
+
+<img width="1920" height="4811" alt="2" src="https://github.com/user-attachments/assets/c9da3fe7-32cd-42bc-87f7-361d5cbb8635" />
