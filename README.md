@@ -30,7 +30,7 @@ This e-commerce site allows users to browse and purchase products online. The ap
 
 ## Demo
 
-[https://mern-ecommerce-site-client-9524.onrender.com/](https://mern-ecommerce-site-client-9524.onrender.com/)
+[https://mern-ecommerce-site-lilac.vercel.app/](https://mern-ecommerce-site-lilac.vercel.app/)
 
 ## Images
 
